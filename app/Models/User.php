@@ -17,10 +17,19 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 2;
+    const GENDER_OTHER = 3;
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'surname',
+        'patronymic',
+        'age',
+        'gender',
+        'addres',
     ];
 
     /**
@@ -38,6 +47,20 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    static function getGenders() {
+        return [
+            self::GENDER_MALE => 'Male',
+            self::GENDER_FEMALE => 'Female',
+            self::GENDER_OTHER => 'Other',
+        ];
+    }
+
+    public function getGenderTitleAttribute() {
+        if(isset($this->gender))
+        return self::getGenders()[$this->gender];
+        return null;
+    }
+
     protected function casts(): array
     {
         return [
