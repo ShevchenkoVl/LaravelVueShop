@@ -12,7 +12,6 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        $data['title'] = '#'.$data['title'];
         Color::firstOrCreate($data);
 
         return redirect()->route('color.index');

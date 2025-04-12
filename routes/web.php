@@ -44,3 +44,12 @@ Route::namespace('App\Http\Controllers\User')->prefix('users')->group(function (
     Route::get('/{user}', ShowController::class)->name('user.show');
     Route::get('/{user}/edit', EditController::class)->name('user.edit');
 });
+Route::namespace('App\Http\Controllers\Product')->prefix('products')->group(function () {
+    Route::get('/', IndexController::class)->name('product.index');
+    Route::get('/create', CreateController::class)->name('product.create');
+    Route::post('/', StoreController::class)->name('product.store');
+    Route::patch('/{product}', UpdateController::class)->name('product.update');
+    Route::delete('/{product}', DeleteController::class)->name('product.delete');
+    Route::get('/{product}', ShowController::class)->name('product.show');
+    Route::get('/{product}/edit', EditController::class)->name('product.edit');
+});
